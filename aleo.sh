@@ -8,7 +8,6 @@ WORKSPACE=$PWD
 LOG_PATH="$WORKSPACE/prover.log"
 APP_PATH="$WORKSPACE/aleo-prover-cuda"
 
-
 cpu_cores=$(lscpu | grep '^CPU(s):' | awk '{print $2}')
 cpu_affinity=($(nvidia-smi topo -m 2>/dev/null | awk -F'\t+| {2,}' '{for (i=1;i<=NF;i++) if($i ~ /CPU Affinity/) col=i; if (NR != 1 && $0 ~ /^GPU/) print $col}'))
 gpu_num=${#cpu_affinity[*]}
